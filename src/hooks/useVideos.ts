@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Video {
+export interface Video {
     id: number,
-    name: string
+    name: string,
+    background_image: string
 }
 
 interface VideoResponse {
@@ -23,7 +24,7 @@ const useVideos = () => {
                   .catch(error => {
                     if (error instanceof CanceledError) 
                         return;
-                    
+
                     setError(error.message)});
 
         return () => controller.abort();

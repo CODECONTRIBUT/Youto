@@ -1,5 +1,6 @@
-import { Text } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 import useVideos from '../hooks/useVideos';
+import VideoCard from './VideoCard';
 
 const VideoGrid = () => {
 
@@ -8,9 +9,9 @@ const VideoGrid = () => {
     return (
         <>
             {error && <Text>{error}</Text>}
-            <ul>
-                {videos.map( video => <li key={video.id}>{video.name}</li>)}
-            </ul>
+            <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 5}} padding='10px' spacing={10}>
+                {videos.map( video => <VideoCard key={video.id} video={video}></VideoCard>)}
+            </SimpleGrid>
         </>
     )
 }
