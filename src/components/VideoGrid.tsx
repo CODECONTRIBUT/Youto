@@ -1,27 +1,10 @@
-import { useEffect, useState } from 'react'
-import apiClient from "../services/api-client";
 import { Text } from '@chakra-ui/react';
+import useVideos from '../hooks/useVideos';
 
 const VideoGrid = () => {
-    const [videos, setVideos] = useState<Video[]>([]);
-    const [error, setError] = useState('');
 
-    interface Video {
-        id: number,
-        name: string
-    }
-
-    interface VideoResponse {
-        count: number,
-        results: Video[]
-    }
-
-    useEffect(() => {
-        apiClient.get<VideoResponse>('/games')
-                .then(response => setVideos(response.data.results))
-                .catch(error => setError(error.message));
-    })
-
+    //custom a hook of fetching all videos, reusable for other components.
+    const {videos, error} = useVideos();
     return (
         <>
             {error && <Text>{error}</Text>}
