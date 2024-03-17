@@ -13,7 +13,7 @@ const VideoGrid = () => {
     return (
         <>
             {error && <Text>{error}</Text>}
-            <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 5}} padding='10px' spacing={10}>
+            <SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 5}} padding='10px' spacing={8}>
                 {isLoading && skeletons.map(skeleton => <VideoCardContainer><VideoCardSkeleton key={skeleton}/></VideoCardContainer>)}
                 {data.map( video =><VideoCardContainer><VideoCard key={video.id} video={video}></VideoCard></VideoCardContainer>)}
             </SimpleGrid>
