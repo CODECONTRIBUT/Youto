@@ -1,18 +1,19 @@
 import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
-import useVideos from '../hooks/useVideos';
+import useVideos, { Platform } from '../hooks/useVideos';
 import VideoCard from './VideoCard';
 import VideoCardSkeleton from './VideoCardSkeleton';
 import VideoCardContainer from './VideoCardContainer';
 import { Genre } from '../hooks/useGenres';
+import { VideoQuery } from '../App';
 
 interface Props {
-    selectedGenre: Genre | null
+    videoQuery: VideoQuery
 }
 
-const VideoGrid = ({selectedGenre} : Props) => {
+const VideoGrid = ({videoQuery} : Props) => {
 
     //custom a hook of fetching all videos, reusable for other components.
-    const {data, error, isLoading} = useVideos(selectedGenre);
+    const {data, error, isLoading} = useVideos(videoQuery);
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     return (
