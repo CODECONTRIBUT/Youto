@@ -1,6 +1,7 @@
-import { Card, CardBody, Heading, Image } from '@chakra-ui/react'
+import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
 import { Video }  from '../hooks/useVideos'
 import PlatformIconList from './PlatformIconList'
+import MetaCritic from './MetaCritic'
 
 interface Props{
     video: Video
@@ -13,7 +14,10 @@ const VideoCard = ({ video }: Props) => {
         <Image src={video.background_image} />
         <CardBody>
             <Heading fontSize='2xl'>{video.name}</Heading>
-            <PlatformIconList platforms={video.parent_platforms.map(p => p.platform)}/>
+            <HStack justifyContent='space-between'>
+              <PlatformIconList platforms={video.parent_platforms.map(p => p.platform)}/>
+              <MetaCritic score={video.metacritic}/>
+            </HStack>
         </CardBody>
     </Card>
   )
