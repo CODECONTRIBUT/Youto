@@ -2,6 +2,7 @@ import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
 import { Video }  from '../hooks/useVideos'
 import PlatformIconList from './PlatformIconList'
 import MetaCritic from './MetaCritic'
+import CroppingImageSize from '../services/ImageCrop'
 
 interface Props{
     video: Video
@@ -10,8 +11,8 @@ interface Props{
 const VideoCard = ({ video }: Props) => {
   
   return (
-    <Card borderRadius={10} overflow='hidden'>
-        <Image src={video.background_image} />
+    <Card>
+        <Image src={CroppingImageSize(video.background_image)} />
         <CardBody>
             <Heading fontSize='2xl'>{video.name}</Heading>
             <HStack justifyContent='space-between'>
