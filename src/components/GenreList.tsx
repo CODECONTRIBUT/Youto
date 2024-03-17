@@ -1,9 +1,11 @@
-import { HStack, Image, List, Text } from "@chakra-ui/react";
+import { HStack, Image, List, Spinner, Text } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import CroppingImageSize from "../services/ImageCrop";
 
 const GenreList = () => {
-    const {data} = useGenres();
+    const {data, error, isLoading} = useGenres();
+    if (isLoading) return <Spinner/>;
+    if (error) return;
   return (
     <>
         <List>
