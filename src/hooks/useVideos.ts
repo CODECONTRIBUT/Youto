@@ -1,6 +1,5 @@
 import { VideoQuery } from "../App";
 import useData from "./useData";
-import { Genre } from "./useGenres";
 
 export interface Platform {
     id: number,
@@ -16,6 +15,12 @@ export interface Video {
     metacritic: number
 }
 
-const useVideos = (videoQuery : VideoQuery) => useData<Video>('/games', {params: {genres: videoQuery.genre?.id, platforms: videoQuery.platform?.id}}, [videoQuery]);   
+const useVideos = (videoQuery : VideoQuery) => useData<Video>('/games', 
+                    {
+                        params: {genres: videoQuery.genre?.id, 
+                        platforms: videoQuery.platform?.id, 
+                        ordering: videoQuery.sortOrder,
+                        search: videoQuery.searchStr}
+                    }, [videoQuery]);   
 
 export default useVideos;

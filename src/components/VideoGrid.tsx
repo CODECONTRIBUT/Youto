@@ -3,7 +3,6 @@ import useVideos, { Platform } from '../hooks/useVideos';
 import VideoCard from './VideoCard';
 import VideoCardSkeleton from './VideoCardSkeleton';
 import VideoCardContainer from './VideoCardContainer';
-import { Genre } from '../hooks/useGenres';
 import { VideoQuery } from '../App';
 
 interface Props {
