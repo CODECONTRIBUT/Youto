@@ -14,11 +14,11 @@ const VideoCard = ({ video }: Props) => {
     <Card>
         <Image src={CroppingImageSize(video.background_image)} />
         <CardBody>
-            <Heading fontSize='2xl'>{video.name}</Heading>
-            <HStack justifyContent='space-between'>
+            <HStack justifyContent='space-between' marginBottom={2}>
               <PlatformIconList platforms={video.parent_platforms.map(p => p.platform)}/>
               <MetaCritic score={video.metacritic}/>
             </HStack>
+            <Heading fontSize='2xl'>{video.name}</Heading>
         </CardBody>
     </Card>
   )
