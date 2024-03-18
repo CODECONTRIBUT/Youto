@@ -1,4 +1,4 @@
-import NoImage from "../assets/OLS2VJ0.jpg"
+import NoImage from "../assets/no-image-placeholder-6f3882e0.webp"
 
 const CroppingImageSize = (url: string) => {
     if (!url) return NoImage;
