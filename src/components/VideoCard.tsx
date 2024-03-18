@@ -3,6 +3,7 @@ import { Video }  from '../hooks/useVideos'
 import PlatformIconList from './PlatformIconList'
 import MetaCritic from './MetaCritic'
 import CroppingImageSize from '../services/ImageCrop'
+import Emoji from './Emoji'
 
 interface Props{
     video: Video
@@ -18,7 +19,7 @@ const VideoCard = ({ video }: Props) => {
               <PlatformIconList platforms={video.parent_platforms.map(p => p.platform)}/>
               <MetaCritic score={video.metacritic}/>
             </HStack>
-            <Heading fontSize='2xl'>{video.name}</Heading>
+            <Heading fontSize='2xl'>{video.name}<Emoji rating={video.rating_top}/></Heading>
         </CardBody>
     </Card>
   )
