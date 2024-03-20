@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { VideoQuery } from "../App";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
@@ -14,14 +14,19 @@ export interface Video {
     rating_top: number
 }
 
-const useVideos = (videoQuery : VideoQuery) => useQuery<FetchResponse<Video>, Error>({
+const useVideos = (videoQuery : VideoQuery) => useInfiniteQuery<FetchResponse<Video>, Error>({
     queryKey: ['videos', videoQuery],
-    queryFn: () => apiClient.getAll({
+    queryFn: ({pageParam = 1}) => apiClient.getAll({
         params: {genres: videoQuery.genre?.id, 
         platforms: videoQuery.platform?.id, 
         ordering: videoQuery.sortOrder,
-        search: videoQuery.searchStr}
-    })
+        search: videoQuery.searchStr,
+        page: pageParam}
+    }),
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, allPages) => {
+        return lastPage.next ? allPages.length + 1 : undefined;
+    }
 })  
 
 export default useVideos;
