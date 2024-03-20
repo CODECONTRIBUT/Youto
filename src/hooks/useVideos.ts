@@ -24,6 +24,7 @@ const useVideos = (videoQuery : VideoQuery) => useInfiniteQuery<FetchResponse<Vi
         page: pageParam}
     }),
     keepPreviousData: true,
+    staleTime: 1 * 60 * 60 *1000, //1h
     getNextPageParam: (lastPage, allPages) => {
         return lastPage.next ? allPages.length + 1 : undefined;
     }
