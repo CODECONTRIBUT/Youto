@@ -1,11 +1,11 @@
-import { Box, Button, SimpleGrid, Spinner, Text } from '@chakra-ui/react';
-import useVideos from '../hooks/useVideos';
-import VideoCard from './VideoCard';
-import VideoCardSkeleton from './VideoCardSkeleton';
-import VideoCardContainer from './VideoCardContainer';
-import { VideoQuery } from '../App';
+import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { VideoQuery } from '../App';
+import useVideos from '../hooks/useVideos';
+import VideoCard from './VideoCard';
+import VideoCardContainer from './VideoCardContainer';
+import VideoCardSkeleton from './VideoCardSkeleton';
 
 interface Props {
     videoQuery: VideoQuery
