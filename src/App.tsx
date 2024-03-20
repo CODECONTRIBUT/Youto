@@ -1,23 +1,12 @@
 import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import VideoGrid from "./components/VideoGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
-import PlatformSelector from "./components/PlatformSelector";
-import { Platform } from "./hooks/usePlatforms";
-import SortSelector from "./components/SortSelector";
 import HeadingStr from "./components/HeadingStr";
-
-export interface VideoQuery{
-  genre: Genre | null,
-  platform: Platform | null,
-  sortOrder: string,
-  searchStr: string
-}
+import NavBar from "./components/NavBar";
+import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
+import VideoGrid from "./components/VideoGrid";
 
 function App() {
-  const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
 
   return (
        <Grid templateAreas={{
@@ -29,24 +18,24 @@ function App() {
           lg: '200px 1fr'
        }}>
         <GridItem area="nav">
-          <NavBar onSearch={(searchStr) => setVideoQuery({...videoQuery, searchStr})}/>
+          <NavBar />
         </GridItem>
         <Show above="lg">
           <GridItem area="aside" paddingX='10px'>
-            <GenreList selectedGenre={videoQuery.genre} onSelectGenre={(genre) => setVideoQuery({...videoQuery, genre})}/>
+            <GenreList />
           </GridItem>
         </Show>
         <GridItem area="main">
           <Box paddingLeft={2}>
-            <HeadingStr videoQuery={videoQuery} />
+            <HeadingStr />
             <Flex marginBottom={5}>  
               <Box marginRight={5}>
-                <PlatformSelector onSelectPlatform={(platform)=> setVideoQuery({...videoQuery, platform})} selectedPlatform={videoQuery.platform}/>
+                <PlatformSelector />
               </Box>          
-              <SortSelector selectedOrder={videoQuery.sortOrder} onSelectOrder={(sortOrder) => setVideoQuery({...videoQuery, sortOrder})}></SortSelector>
+              <SortSelector />
             </Flex>
           </Box>
-          <VideoGrid videoQuery={videoQuery}/>
+          <VideoGrid />
         </GridItem>
        </Grid> 
     )

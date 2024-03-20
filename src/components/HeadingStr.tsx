@@ -1,13 +1,10 @@
 import { Heading } from '@chakra-ui/react'
-import React from 'react'
-import { VideoQuery } from '../App'
+import useVideoQueryStore from '../state management/store'
 
-interface Props{
-    videoQuery: VideoQuery
-}
-
-const HeadingStr = ({videoQuery} : Props) => {
-    let headingStr = `${videoQuery.genre?.name || ''} ${videoQuery.platform?.name || ''} Games` 
+const HeadingStr = () => {
+  const selectedGenre = useVideoQueryStore(s => s.videoQuery.genre);
+  const selectedPlatform = useVideoQueryStore(s => s.videoQuery.platform);
+  let headingStr = `${selectedGenre?.name || ''} ${selectedPlatform?.name || ''} Games` 
   return (
     <Heading as='h1' marginY={5} fontSize='5xl'>{headingStr}</Heading>
   )

@@ -1,16 +1,15 @@
 import { Button, HStack, Heading, Image, List, Spinner } from "@chakra-ui/react";
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 import CroppingImageSize from "../services/ImageCrop";
+import useVideoQueryStore from "../state management/store";
 
-interface Props{
-  onSelectGenre: (genre : Genre) => void;
-  selectedGenre: Genre | null
-}
 
-const GenreList = ({onSelectGenre, selectedGenre} : Props) => {
+const GenreList = () => {
+    const setGenre = useVideoQueryStore(s => s.setGenre);
+    const selectedGenre = useVideoQueryStore(s => s.videoQuery.genre);
     const {data, error, isLoading} = useGenres();
     if (isLoading) return <Spinner/>;
-    if (error) return;
+    if (error) return null;
 
   return (
     <>
@@ -19,7 +18,7 @@ const GenreList = ({onSelectGenre, selectedGenre} : Props) => {
             {data?.results.map(genre => 
                 <HStack paddingY='5px' key={genre.id}>
                     <Image borderRadius='8px' boxSize='32px' objectFit='cover' src={CroppingImageSize(genre.image_background)}/>
-                    <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} color={genre.id === selectedGenre?.id ? 'green' : ''} fontSize='lg' variant='link' onClick={() => onSelectGenre(genre)}>{genre.name}</Button>
+                    <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} color={genre.id === selectedGenre?.id ? 'green' : ''} fontSize='lg' variant='link' onClick={() => setGenre(genre)}>{genre.name}</Button>
                 </HStack>
                 )}
         </List>

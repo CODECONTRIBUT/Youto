@@ -1,20 +1,14 @@
 import { SimpleGrid, Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { VideoQuery } from '../App';
 import useVideos from '../hooks/useVideos';
 import VideoCard from './VideoCard';
 import VideoCardContainer from './VideoCardContainer';
 import VideoCardSkeleton from './VideoCardSkeleton';
 
-interface Props {
-    videoQuery: VideoQuery
-}
-
-const VideoGrid = ({videoQuery} : Props) => {
-
+const VideoGrid = () => {
     //custom a hook of fetching all videos, reusable for other components.
-    const {data, error, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage} = useVideos(videoQuery);
+    const {data, error, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage} = useVideos();
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     
     const fetchedTotalVideos = data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;

@@ -1,19 +1,17 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
+import useVideoQueryStore from '../state management/store';
 
-interface Props {
-    onSearch: (searchStr: string) => void;
-}
-
-const SearchInput = ({onSearch} : Props) => {
+const SearchInput = () => {
     const searchRef = useRef<HTMLInputElement>(null);
+    const setSearchStr = useVideoQueryStore(s => s.setSearchStr);
 
   return (
     <form onSubmit={(event) =>{
         event.preventDefault();
         if (searchRef.current)
-            onSearch(searchRef.current.value);
+            setSearchStr(searchRef.current.value);
     }}>
         <InputGroup>
             <InputLeftElement children={<BsSearch/>}></InputLeftElement>
