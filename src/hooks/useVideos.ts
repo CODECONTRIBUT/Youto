@@ -1,20 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import APIClient, { FetchResponse } from "../services/api-client";
-import { Platform } from "./usePlatforms";
 import useVideoQueryStore from "../state management/store";
+import { Video } from "../entities/Video";
 
 const apiClient = new APIClient<Video>('/games');
-
-export interface Video {
-    id: number,
-    name: string,
-    slug: string,
-    background_image: string,
-    parent_platforms: {platform: Platform}[],
-    metacritic: number,
-    rating_top: number,
-    description: string
-}
 
 const useVideos = () => {
     const videoQuery = useVideoQueryStore(s => s.videoQuery);

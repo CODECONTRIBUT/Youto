@@ -1,5 +1,5 @@
 import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
-import { Video }  from '../hooks/useVideos'
+import { Video } from "../entities/Video"
 import PlatformIconList from './PlatformIconList'
 import MetaCritic from './MetaCritic'
 import CroppingImageSize from '../services/ImageCrop'
