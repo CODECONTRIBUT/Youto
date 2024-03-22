@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import useVideo from "../hooks/useVideo"
 import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
+import ExpandableText from "../components/ExpandableText";
 
 
 const VideoDetailPage = () => {
@@ -13,7 +14,7 @@ const VideoDetailPage = () => {
     return (
         <>
             <Heading>{data.name}</Heading>
-            <Text>{data.description}</Text>
+            <ExpandableText>{data.description}</ExpandableText>
         </>
     )
 }
