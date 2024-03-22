@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import useVideo from "../hooks/useVideo"
-import { Heading, Spinner } from "@chakra-ui/react";
+import { GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandableText";
 import VideoAttributes from "../components/VideoAttributes";
 import VideoTrailer from "../components/VideoTrailer";
@@ -15,13 +15,17 @@ const VideoDetailPage = () => {
     if (error || !data) throw error;
 
     return (
-        <>
-            <Heading>{data.name}</Heading>
-            <ExpandableText>{data.description}</ExpandableText>
-            <VideoAttributes video={data}/>
-            <VideoTrailer videoId={data.id} />
-            <VideoScreenshots videoId={data.id}/>
-        </>
+        <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
+            <GridItem>
+                <Heading>{data.name}</Heading>
+                <ExpandableText>{data.description}</ExpandableText>
+                <VideoAttributes video={data}/>               
+            </GridItem>
+            <GridItem>
+                <VideoTrailer videoId={data.id} />
+                <VideoScreenshots videoId={data.id}/>
+            </GridItem>
+        </SimpleGrid>
     )
 }
 
