@@ -4,6 +4,7 @@ import { Heading, Spinner } from "@chakra-ui/react";
 import ExpandableText from "../components/ExpandableText";
 import VideoAttributes from "../components/VideoAttributes";
 import VideoTrailer from "../components/VideoTrailer";
+import VideoScreenshots from "../components/VideoScreenshots";
 
 
 const VideoDetailPage = () => {
@@ -19,6 +20,7 @@ const VideoDetailPage = () => {
             <ExpandableText>{data.description}</ExpandableText>
             <VideoAttributes video={data}/>
             <VideoTrailer videoId={data.id} />
+            <VideoScreenshots videoId={data.id}/>
         </>
     )
 }
