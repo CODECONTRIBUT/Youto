@@ -1,0 +1,35 @@
+ul {
+    list-style: none;
+   }
+
+li {
+    display: inline-block; 
+    margin: 0;
+  }
+
+.nav_logo:hover {
+  transform: rotate(15deg);
+}
+
+.nav_box {
+    height: var(--header-height);
+    margin: 1rem;
+}
+
+.navbar_List {
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-direction: row;
+    
+  }
+
+  .nav_link {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.2s;
+}
+
+.nav_link:hover {
+    color: var(--first-color);
+}

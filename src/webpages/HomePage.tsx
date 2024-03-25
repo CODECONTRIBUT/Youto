@@ -4,6 +4,7 @@ import HeadingStr from '../components/HeadingStr'
 import PlatformSelector from '../components/PlatformSelector'
 import SortSelector from '../components/SortSelector'
 import VideoGrid from '../components/VideoGrid'
+import SearchInput from '../components/SearchInput'
 
 const HomePage = () => {
     return (
@@ -16,11 +17,12 @@ const HomePage = () => {
            lg: '200px 1fr'
         }}>
          <Show above="lg">
-           <GridItem area="aside" paddingX='10px'>
+           <GridItem area="aside" paddingX='5px'>
              <GenreList />
            </GridItem>
          </Show>
          <GridItem area="main">
+           <SearchInput />
            <Box paddingLeft={2}>
              <HeadingStr />
              <Flex marginBottom={5}>  
