@@ -15,10 +15,10 @@ const MenuLayout = () => {
       <li>
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronDown/>} className='nav_link' width='100%'>
-              Genres
+              Genre Entities
             </MenuButton>
             <MenuList>
-                <MenuDefinitionItem menuTerm='SubMenu 1 available soon' linkStr='/' />
+                <MenuDefinitionItem menuTerm='Genres' linkStr='/genres' />
                 <MenuDefinitionItem menuTerm='SubMenu 2 available soon' linkStr='/' />
             </MenuList>
         </Menu>

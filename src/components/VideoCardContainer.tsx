@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
+import '../css/cardcontainer.css'
 
 interface Props {
     children: ReactNode
@@ -7,10 +8,7 @@ interface Props {
 
 const VideoCardContainer = ({children} : Props) => {
   return (
-    <Box _hover={{
-      transform: 'scale(1.03)',
-      transition: 'transform .15s ease-in'
-    }} borderRadius={10} overflow='hidden'>
+    <Box className='card_container'>
         {children}
     </Box>
   )
