@@ -26,10 +26,10 @@ const MenuLayout = () => {
       <li>                  
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronDown/>} className='nav_link'>
-              Stores
+              Stores Entities
             </MenuButton>
             <MenuList>
-                <MenuDefinitionItem menuTerm='SubMenu 1 available soon' linkStr='/' />
+                <MenuDefinitionItem menuTerm='Stores' linkStr='/stores' />
                 <MenuDefinitionItem menuTerm='SubMenu 2 available soon' linkStr='/' />
             </MenuList>
         </Menu>

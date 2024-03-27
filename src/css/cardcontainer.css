@@ -8,3 +8,10 @@
     transform: scale(1.03);
 }
 
+.a_hyperlink {
+    color: var(--link-color);
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+
