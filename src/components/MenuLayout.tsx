@@ -41,7 +41,7 @@ const MenuLayout = () => {
       </li>
       <li>
         <Menu>
-          <MenuDefinitionItem menuTerm='Contact Us' linkStr='/' />
+          <MenuDefinitionItem menuTerm='Contact Us' linkStr='/constactus' />
         </Menu>
       </li>
     </ul>
