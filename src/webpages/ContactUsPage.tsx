@@ -1,8 +1,18 @@
-import React from 'react'
+import { Box, HStack, Heading } from '@chakra-ui/react'
+import '../css/contactus.css'
+import ContactDetails from '../components/ContactDetails'
 
 const ContactUsPage = () => {
   return (
-    <div>ContactUsPage</div>
+    <Box className='page_container'>
+        <HStack className='page_heading'  display='flex' flexDirection='column'> 
+            <Heading className='text_one' fontSize='x-large'>Contact Us</Heading>
+            <Heading className='text-two' fontSize='large'>Any Question or remarks? Just write us a message</Heading>
+        </HStack>
+        <Box className='form_container'>
+            <ContactDetails />
+        </Box>
+    </Box>
   )
 }
 
