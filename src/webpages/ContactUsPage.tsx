@@ -1,6 +1,7 @@
-import { Box, HStack, Heading } from '@chakra-ui/react'
+import { Box, HStack, Heading, Text } from '@chakra-ui/react'
 import '../css/contactus.css'
 import ContactDetails from '../components/ContactDetails'
+import FeedbackForm from '../components/FeedbackForm'
 
 const ContactUsPage = () => {
   return (
@@ -11,6 +12,7 @@ const ContactUsPage = () => {
         </HStack>
         <Box className='form_container'>
             <ContactDetails />
+            <FeedbackForm />
         </Box>
     </Box>
   )
