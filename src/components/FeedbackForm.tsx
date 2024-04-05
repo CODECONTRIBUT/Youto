@@ -43,7 +43,7 @@ const FeedbackForm = () => {
                 <Input {...register('message', {required: true})} className='input_item'></Input>
             </Box>
             {errors.message?.type === 'required' && <p className='error_msg'>Your message is required</p>}
-            <Button width='20%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' variant='solid'>Submit</Button>     
+            <Button width='30%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' variant='solid'>Submit</Button>     
     </form>
   )
 }

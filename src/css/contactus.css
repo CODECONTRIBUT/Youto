@@ -6,6 +6,11 @@
     background-color: var(--background-color);
     padding-bottom: 50px;
     border-radius: 10px;
+    @media (max-width: 768px) {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+      }
 }
 
 .page_heading {
@@ -26,6 +31,7 @@
     flex-direction: row;
     @media (max-width: 768px) {
       width: 90%;
+      flex-direction: column;
     }
 }
 
@@ -72,6 +78,7 @@
     @media (max-width: 768px) {
       padding-bottom: 80px;
       grid-row: 2;
+      width: 100%;
     }
 }
 
@@ -107,6 +114,11 @@
     margin-top: 60px;
     cursor: pointer;
     text-decoration: none;
+    @media (max-width: 1024px) {
+        padding-bottom: 80px;
+        margin-top: 10px;
+        grid-row: 2;
+      }
 }
 
 .contact_details {
@@ -124,6 +136,9 @@
 
 .circle_container {
     margin-top:80px;
+    @media (max-width: 1024px) {
+        margin-top: 20px;
+      }
 }
 
 .big_circle {
@@ -134,6 +149,9 @@
     border-radius: 100%;
     z-index: 22;
     margin-left: 10px;
+    @media (max-width: 1024px) {
+        margin-top: 10px;
+      }
 }
 
 
@@ -193,6 +211,11 @@
     position: relative;
     align-content:flex-start;
     color: darkblue;
+    @media (max-width: 768px) {
+        margin-top: 40px;
+        width: 100%;
+        color: #fff;
+      }
 }
 
 .input_block {
