@@ -2,6 +2,7 @@ import { Box, Button, Input} from '@chakra-ui/react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { BiChevronUpCircle } from "react-icons/bi";
 import Swal from 'sweetalert2';
+import '../css/contactus.css'
 
 interface FormData {
     name: string,
@@ -17,7 +18,8 @@ const FeedbackForm = () => {
         Swal.fire({
             title: "Thanks",
             text: "Your message was sent through",
-            icon: "success"
+            icon: "success",
+            customClass: 'swal-wide'
           });
         reset();
     };
