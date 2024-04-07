@@ -1,35 +1,119 @@
-ul {
-    list-style: none;
-   }
-
-li {
-    display: inline-block; 
-    margin: 0;
-  }
-
 .nav_logo:hover {
   transform: rotate(15deg);
 }
 
 .nav_box {
     height: var(--header-height);
-    margin: 1rem;
+    padding: 0px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.navbar_List {
+.navbar_list {
+  height: 100%;
+  width: 100%;
+}
+
+.navbar_list ul {
     display: flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-direction: row;
-    
+    align-items:center center;
+    justify-content: flex-start;
+    flex-direction: row;  
+    height: 100%; 
   }
 
-  .nav_link {
-    color: var(--title-color);
-    font-weight: var(--font-semi-bold);
-    transition: color 0.2s;
+.navbar_list li {
+    list-style: none;
+    align-self: center;
+    height: 100%;
+    align-content: center;
 }
 
-.nav_link:hover {
+.navbar_list li a {
+  text-decoration: none;
+  color: var(--title-color);
+  padding-right: 4rem;
+  display: block;
+  font-size: large;
+  font-weight: var(--font-semi-bold);
+}
+
+.navbar_list li a:hover {
     color: var(--first-color);
+}
+
+.show_sidebar {
+  display: none;
+}
+
+.side_bar {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 250px;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  backdrop-filter: blur(10px);
+}
+
+.side_bar li {
+  width: 100%;
+  display: block;
+  height: 50px;
+}
+
+.side_bar li:hover {
+  background-color: var(--background-color);
+}
+
+.side_bar li a {
+  width: 100%;
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  text-align: center;
+  align-self: center;
+}
+
+.side_bar li a:hover {
+  color: var(--first-color);
+}
+
+@media (max-width: 768px){
+  .hided_item {
+    display: none;
+  }
+
+  .side_bar li:hover {
+    background-color: var(--background-color);
+  }
+
+  .side_bar li a:hover {
+    color: var(--first-color);
+  }
+
+  .navbar_list ul {
+    justify-content: flex-end;
+  }
+
+  .navbar_list li a {
+  padding-right: 10px;
+  align-self: center;
+  }
+
+  .show_sidebar {
+    display: flex;
+  }
+  
+  .hide_button {
+    padding-left: 5px;
+  }
 }

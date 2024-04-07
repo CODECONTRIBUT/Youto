@@ -4,14 +4,15 @@ import { MenuItem } from '@chakra-ui/react'
 
 interface Props{
     menuTerm: string,
-    linkStr: string
+    linkStr: string,
+    clasStr?: string
 }
 
-const MenuDefinitionItem = ({menuTerm, linkStr}: Props) => {
+const MenuDefinitionItem = ({menuTerm, linkStr, clasStr}: Props) => {
   return (
-    <MenuItem className='nav_link'>
-      <NavLink to={linkStr}>{menuTerm}</NavLink>  
-    </MenuItem>
+    <li className={clasStr}>
+        <a href={linkStr}>{menuTerm}</a>
+    </li>
 
   )
 }
