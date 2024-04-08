@@ -6,13 +6,13 @@ import { GrClose } from "react-icons/gr";
 import { useState } from "react";
 
 const MenuLayout = () => {
-  const [toggleSidebar, setToggleSidebar] = useState({display:'none'});
+  const [isActive, setActive] = useState(false);
 
   return (
     <Box width='60%' className='nav_box' padding={3} backgroundColor="transparent">
       <div>
-        <ul className='side_bar' id="side_bar" style={toggleSidebar}>
-          <li onClick={() => setToggleSidebar({display:'none'})} className="hide_button"><a href="#"><GrClose /></a></li>
+        <ul className={`side_bar ${isActive ? 'active_sidebar' : ''}`}>
+          <li onClick={() => setActive(false)} className="hide_button"><a href="#"><GrClose /></a></li>
           <MenuDefinitionItem menuTerm='Home' linkStr='/' />
           <MenuDefinitionItem menuTerm='Genres' linkStr='/genres' />               
           <MenuDefinitionItem menuTerm='Stores' linkStr='/stores' />
@@ -25,7 +25,7 @@ const MenuLayout = () => {
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Genres' linkStr='/genres' />               
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Stores' linkStr='/stores' />
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Contact Us' linkStr='/constactus' />
-          <li className='show_sidebar' onClick={() => setToggleSidebar({display:'flex'})}><a href="#"><TfiAlignJustify  /></a></li>
+          <li className='show_sidebar' onClick={() => setActive(true)}><a href="#"><TfiAlignJustify  /></a></li>
         </ul>
       </div>
     </Box>
