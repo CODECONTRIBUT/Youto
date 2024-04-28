@@ -8,8 +8,8 @@ import VideoScreenshots from "../components/VideoScreenshots";
 
 
 const VideoDetailPage = () => {
-    const {slug} = useParams();
-    const {data, error, isLoading } = useVideo(slug!);
+    const {id} = useParams();
+    const {data, error, isLoading } = useVideo(parseInt(id!));
 
     if (isLoading) return <Spinner />;
     if (error || !data) throw error;
@@ -23,7 +23,7 @@ const VideoDetailPage = () => {
             </GridItem>
             <GridItem>
                 <VideoTrailer videoId={data.id} />
-                <VideoScreenshots videoId={data.id}/>
+                <VideoScreenshots screenshots={data.screenshots}/>
             </GridItem>
         </SimpleGrid>
     )

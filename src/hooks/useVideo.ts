@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import APIClient from "../services/api-client";
 import { Video } from "../entities/Video";
 
-const apiClient = new APIClient<Video>('/games');
+const apiClient = new APIClient<Video>('/products');
 
-const useVideo = (slug : string) => useQuery({
-    queryKey: ['games', slug],
-    queryFn: () => apiClient.get(slug)
+const useVideo = (id: number) => useQuery({
+    queryKey: ['games', id],
+    queryFn: () => apiClient.get(id)
 });
 
 export default useVideo;

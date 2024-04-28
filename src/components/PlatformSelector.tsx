@@ -9,6 +9,7 @@ const PlatformSelector = () => {
     const setPlatform = useVideoQueryStore(s => s.setPlatform);
     const selectPlatform = useVideoQueryStore(s => s.videoQuery.platform);
     if (error) return null;
+
     return (
         <Menu>
             <MenuButton as={Button} rightIcon={<BsChevronDown/>}>

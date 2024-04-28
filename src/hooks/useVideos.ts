@@ -3,12 +3,12 @@ import APIClient, { FetchResponse } from "../services/api-client";
 import useVideoQueryStore from "../state management/store";
 import { Video } from "../entities/Video";
 
-const apiClient = new APIClient<Video>('/games');
+const apiClient = new APIClient<Video>('/products');
 
 const useVideos = () => {
     const videoQuery = useVideoQueryStore(s => s.videoQuery);
     return useInfiniteQuery<FetchResponse<Video>, Error>({
-        queryKey: ['videos', videoQuery],
+        queryKey: ['products', videoQuery],
         queryFn: ({pageParam = 1}) => apiClient.getAll({
             params: {genres: videoQuery.genre?.id, 
             platforms: videoQuery.platform?.id, 

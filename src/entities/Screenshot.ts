@@ -1,4 +1,6 @@
 export interface Screenshot{
     id: number,
-    image: string
+    productId: number,
+    image: string,
+    CreatedDatetime: Date
 }

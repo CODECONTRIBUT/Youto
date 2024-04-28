@@ -11,13 +11,13 @@ const VideoAttributes = ({video}: Props) => {
   return (
     <SimpleGrid columns={2} as="dl">
         <DefinitionItem term='Platforms'>
-            {video.parent_platforms?.map(({platform}) => <Text key={platform.id}>{platform.name}</Text>)}
+            {video.parentPlatforms?.map(platform => <Text key={platform.id}>{platform.name}</Text>)}
         </DefinitionItem>
         <DefinitionItem term='Metascore'>
-            <MetaCritic score={video.metacritic}/>
+            <MetaCritic score={video.metaCritic}/>
         </DefinitionItem>
         <DefinitionItem term='Rating'>
-            <MetaCritic score={video.rating_top}/>
+            <MetaCritic score={video.rating_Top}/>
         </DefinitionItem>
     </SimpleGrid>
   )

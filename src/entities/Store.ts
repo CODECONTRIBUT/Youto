@@ -3,7 +3,7 @@ export interface Store {
     name: string,
     domain: string | null,
     slug: string,
-    games_count: number,
-    image_background: string,
+    gamesCount: number,
+    imageBackground: string,
     description: string
 }

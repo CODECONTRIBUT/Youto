@@ -17,7 +17,7 @@ const GenreList = () => {
         <List>
             {data?.results.map(genre => 
                 <HStack paddingY='5px' key={genre.id}>
-                    <Image borderRadius='8px' boxSize='32px' objectFit='cover' src={CroppingImageSize(genre.image_background)}/>
+                    <Image borderRadius='8px' boxSize='32px' objectFit='cover' src={CroppingImageSize(genre.imageBackground)}/>
                     <Button whiteSpace='normal' textAlign='left' fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} color={genre.id === selectedGenre?.id ? 'green' : ''} fontSize='lg' variant='link' onClick={() => setGenre(genre)}>{genre.name}</Button>
                 </HStack>
                 )}

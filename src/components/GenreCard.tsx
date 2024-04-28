@@ -13,13 +13,13 @@ interface Props{
 const GenreCard = ({genre}: Props) => {
   return (
     <Card>
-        <Image src={CroppingImageSize(genre.image_background)}></Image>
+        <Image src={CroppingImageSize(genre.imageBackground)}></Image>
         <CardBody>
             <HStack justifyContent='space-between' alignItems='baseline' spacing={1}>
                 <Heading fontSize='xl'>
                     <Link to={'/genres/' + genre.id}>{genre.name}</Link>
                 </Heading>
-                <DefinitionItem term='Games No.:'><MetaCritic score={genre.games_count} /></DefinitionItem>
+                <DefinitionItem term='Games No.:'><MetaCritic score={genre.gamesCount} /></DefinitionItem>
             </HStack>
         </CardBody>
     </Card>

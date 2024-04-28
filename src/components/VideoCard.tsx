@@ -11,18 +11,17 @@ interface Props{
 }
 
 const VideoCard = ({ video }: Props) => {
-  
   return (
     <Card>
-        <Image src={CroppingImageSize(video.background_image)} />
+        <Image src={CroppingImageSize(video.background_Image)} />
         <CardBody>
             <HStack justifyContent='space-between' marginBottom={2}>
-              <PlatformIconList platforms={video.parent_platforms.map(p => p.platform)}/>
-              <MetaCritic score={video.metacritic}/>
+              <PlatformIconList platforms={video.parentPlatforms}/>
+              <MetaCritic score={video.metaCritic}/>
             </HStack>
             <Heading fontSize='2xl'>
-              <Link to={'/games/' + video.slug}>{video.name}</Link>
-              <Emoji rating={video.rating_top}/>
+              <Link to={'/products/' + video.id}>{video.name}</Link>
+              <Emoji rating={video.rating_Top}/>
             </Heading>
         </CardBody>
     </Card>

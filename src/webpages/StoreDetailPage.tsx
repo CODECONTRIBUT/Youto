@@ -17,11 +17,11 @@ const StoreDetailPage = () => {
     <GridItem>
         <Heading fontSize='2xl'>{data.name}</Heading>
         <ExpandableText>{data.description}</ExpandableText>
-        <DefinitionItem term='Games No.:'><MetaCritic score={data.games_count} /></DefinitionItem>
+        <DefinitionItem term='Games No.:'><MetaCritic score={data.gamesCount} /></DefinitionItem>
         {data.domain && <a className='a_hyperlink' href={'http://' + data.domain} target='_blank'>{data.domain}</a>}
     </GridItem>
     <GridItem>
-        <Image src={data.image_background} />
+        <Image src={data.imageBackground} />
     </GridItem>
 </SimpleGrid>
   )
