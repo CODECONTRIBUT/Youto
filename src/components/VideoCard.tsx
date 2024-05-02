@@ -12,7 +12,6 @@ interface Props{
 
 const VideoCard = ({ video }: Props) => {
   const navigate = useNavigate();
-
   return (
     <Card onClick={() => navigate('/products/' + video.id)}>
         <Image src={CroppingImageSize(video.background_Image)} />
