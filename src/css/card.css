@@ -1,0 +1,4 @@
+.card_link:hover {
+    text-decoration:underline;
+    color: var(--first-color);
+}

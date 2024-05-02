@@ -1,10 +1,11 @@
-import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
+import { Card, CardBody, HStack, Heading, Image, textDecoration } from '@chakra-ui/react'
 import { Video } from "../entities/Video"
 import PlatformIconList from './PlatformIconList'
 import MetaCritic from './MetaCritic'
 import CroppingImageSize from '../services/ImageCrop'
 import Emoji from './Emoji'
 import { Link, useNavigate } from 'react-router-dom'
+import '../css/card.css'
 
 interface Props{
     video: Video
@@ -21,7 +22,7 @@ const VideoCard = ({ video }: Props) => {
               <MetaCritic score={video.metaCritic}/>
             </HStack>
             <Heading fontSize='2xl'>
-              <Link to={'/products/' + video.id}>{video.name}</Link>
+              <Link to={'/products/' + video.id} className='card_link'>{video.name}</Link>
               <Emoji rating={video.rating_Top}/>
             </Heading>
         </CardBody>
