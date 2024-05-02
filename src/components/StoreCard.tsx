@@ -1,7 +1,7 @@
 import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react'
 import { Store } from '../entities/Store'
 import CroppingImageSize from '../services/ImageCrop'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import DefinitionItem from './DefinitionItem'
 import MetaCritic from './MetaCritic'
 
@@ -10,8 +10,10 @@ interface Props{
 }
 
 const StoreCard = ({store}: Props) => {
+    const navigate = useNavigate();
+    
   return (
-    <Card>
+    <Card onClick={() => navigate('/stores/' + store.id)}>
         <Image src={CroppingImageSize(store.imageBackground)} />
         <CardBody>
             <HStack justifyContent='space-between' alignItems='baseline' spacing={1}>

@@ -4,15 +4,17 @@ import PlatformIconList from './PlatformIconList'
 import MetaCritic from './MetaCritic'
 import CroppingImageSize from '../services/ImageCrop'
 import Emoji from './Emoji'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface Props{
     video: Video
 }
 
 const VideoCard = ({ video }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <Card>
+    <Card onClick={() => navigate('/products/' + video.id)}>
         <Image src={CroppingImageSize(video.background_Image)} />
         <CardBody>
             <HStack justifyContent='space-between' marginBottom={2}>
