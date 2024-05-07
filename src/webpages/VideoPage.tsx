@@ -8,43 +8,41 @@ import { BiChevronUpCircle } from "react-icons/bi";
 import { z } from "zod";
 import useVideo from "../hooks/useVideo";
 import { useParams } from "react-router-dom";
-import { Platform } from "../entities/Platform";
+import useUpdateVideo, { UpdateVideoDTO } from "../hooks/useUpdateVideo";
 
 const schema = z.object({
-  name: z.string().min(1, {message: 'Name must be at least 1 characters'}),
-  description: z.string().min(1, {message: 'Name must be at least 1 characters'}),
-  platforms: z.array(z.object({
+  name: z.string().min(1, {message: 'Name must be at least 1 character'}),
+  description: z.string().min(1, {message: 'Name must be at least 1 character'}),
+  parentPlatforms: z.array(z.object({
                               id: z.number(),
                               name: z.string().min(1, {message: "required"}),
                               slug: z.string().min(1, {message: 'required'})
                             }))
                       .nonempty({message: 'please choose at least one platform'})
 });
-
-type FormValues = {
-    name: string;
-    description: string;
-    platforms: Platform[];
-  };
   
   const VideoForm = () => {
     const {id} = useParams();
-    const {data: video, error, isLoading} = useVideo(parseInt(id!));
+    const videoId= parseInt(id!);
+    const {data: video, error, isLoading} = useVideo(videoId);
     const {data: platforms, error: platformError, isLoading: isLoadingPlatforms} = usePlatforms();
+
+    const updateVideoMutation = useUpdateVideo();
+
     if (isLoading|| isLoadingPlatforms) return <Spinner />;
     if (error || platformError || !video || !platforms) throw error;
 
     return (
-      <Form<FormValues, typeof schema>
-        onSubmit={async (values: FormValues) =>{
-            console.log(values);
-        }}   
+      <Form<UpdateVideoDTO['data'], typeof schema>  
+        onSubmit={async (values) => {
+          await updateVideoMutation.mutateAsync({ videoId, data: values });
+        }}
         id="videoform"
         options={{
           defaultValues: {
             name: video.name,
             description: video.description,
-            platforms: video.parentPlatforms
+            parentPlatforms: video.parentPlatforms
           }
         }}
       >
@@ -62,8 +60,8 @@ type FormValues = {
             />
             <SelectField
               label="Platforms"
-              error={errors.platforms && errors.platforms[0]?.id}
-              registration={register('platforms')}
+              error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
+              registration={register('parentPlatforms')}
               options={platforms.results.map((platform) => ({
                 label: platform.name,
                 value: platform.id,

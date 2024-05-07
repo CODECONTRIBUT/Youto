@@ -38,8 +38,8 @@ class APIClient<T> {
                             .then(response => response.data);
     }
 
-    update = (data: T) => {
-        return axiosInstance.put<T>(this.endpoint, data)
+    update = (id: number, data: T) => {
+        return axiosInstance.put<T>(this.endpoint + '/' + id, data)
                             .then(response => response.data);
     }
 }
