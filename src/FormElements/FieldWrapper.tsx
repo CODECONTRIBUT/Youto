@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { FieldError } from 'react-hook-form';
+import '../css/fieldwrapper.css' 
 
 interface FieldWrapperProps {
   label?: string;
@@ -14,7 +15,7 @@ export type FieldWrapperPassThroughProps = Omit<FieldWrapperProps, 'className' |
 
 export const FieldWrapper = ({label, className, error, children}: FieldWrapperProps) => {
   return (
-    <div>
+    <div className='field-wrapper'>
       <label className={clsx('block text-sm font-medium text-gray-700', className)}>
         {label}
         <div className="mt-1">{children}</div>

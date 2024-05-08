@@ -1,7 +1,7 @@
-import { Button, Spinner } from "@chakra-ui/react";
+import { Button, GridItem, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { Form } from "../FormElements/Form";
 import { InputField } from "../FormElements/InputField";
-import { SelectField } from "../FormElements/SelectField";
+import { MultiselectField } from "../FormElements/SelectField";
 import { TextAreaField } from "../FormElements/TextareaField";
 import usePlatforms from "../hooks/usePlatforms";
 import { BiChevronUpCircle } from "react-icons/bi";
@@ -41,39 +41,50 @@ const schema = z.object({
         options={{
           defaultValues: {
             name: video.name,
-            description: video.description,
-            parentPlatforms: video.parentPlatforms
+            description: video.description
           }
         }}
       >
         {({ register, formState: {errors, isValid}}) => (
           <>
-            <InputField
-              label="Name"
-              error={errors['name']}
-              registration={register('name')}
-            />
-            <TextAreaField
-              label="Description"
-              error={errors['description']}
-              registration={register('description')}
-            />
-            <SelectField
-              label="Platforms"
-              error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
-              registration={register('parentPlatforms')}
-              options={platforms.results.map((platform) => ({
-                label: platform.name,
-                value: platform.id,
-              }))}
-            />
-            <div>
-                <Button width='30%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} 
-                colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' 
-                variant='solid'>Submit</Button>
-            </div>
+            <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
+              <GridItem>
+                <InputField
+                  label="Name"
+                  error={errors['name']}
+                  registration={register('name')}
+                />
+                <MultiselectField
+                  label="Platforms"
+                  error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
+                  registration={register('parentPlatforms')}
+                  defaultValues={video.parentPlatforms.map(platform => ({
+                    value: platform.id,
+                    label: platform.name,
+                  }))}
+                  multiOptions={platforms.results.map((platform) => ({
+                    value: platform.id,
+                    label: platform.name,
+                  }))}
+                  />
+                <TextAreaField
+                  label="Description"
+                  error={errors['description']}
+                  registration={register('description')}
+                />
+                <div>
+                    <Button width='30%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} 
+                    colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' 
+                    variant='solid'>Submit</Button>
+                </div>
+              </GridItem>
+              <GridItem>
+              </GridItem>
+            </SimpleGrid>
           </>
         )}
       </Form>
     );
   };
+
+  export default VideoForm;

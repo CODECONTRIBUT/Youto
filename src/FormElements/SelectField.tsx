@@ -1,38 +1,37 @@
-import clsx from 'clsx';
-import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-
 import { FieldWrapper, FieldWrapperPassThroughProps } from './FieldWrapper';
-import { Platform } from '../entities/Platform';
+import Select, { MultiValue } from 'react-select';
+import { useState } from 'react';
+import '../css/select.css'
 
 type Option = {
-  label: string;
-  value: number;
+   value: number,
+   label: string
 };
 
 type SelectFieldProps = FieldWrapperPassThroughProps & {
-  options: Option[];
+  multiOptions: Option[];
   className?: string;
   registration: Partial<UseFormRegisterReturn>;
+  defaultValues: Option[] | null;
 };
 
-export const SelectField= ({label, options, error, className, registration}: SelectFieldProps) => {
+export const MultiselectField= ({label, multiOptions, defaultValues, error, className, registration}: SelectFieldProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<MultiValue<Option> | null>(defaultValues);
+
   return (
     <FieldWrapper label={label} error={error}>
-      <select
-        multiple={true}
-        className={clsx(
-          'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md',
-          className
-        )}
+      <Select
+        defaultValue={selectedOptions}
+        options={multiOptions}
+        isMulti
         {...registration}
-      >
-        {options.map(({ label, value }) => (
-          <option key={label?.toString()} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
+        className="basic-multi-select multi-select"
+        classNamePrefix="select"
+        isSearchable = {true}
+        placeholder="Select platforms"
+        onChange={setSelectedOptions}
+        />
     </FieldWrapper>
   );
 };
