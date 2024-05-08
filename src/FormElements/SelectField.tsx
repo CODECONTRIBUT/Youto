@@ -1,11 +1,10 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { Controller, UseFormRegisterReturn } from 'react-hook-form';
 import { FieldWrapper, FieldWrapperPassThroughProps } from './FieldWrapper';
-import Select, { MultiValue } from 'react-select';
-import { useState } from 'react';
+import Select from 'react-select';
 import '../css/select.css'
 
 type Option = {
-   value: number,
+   value: any,
    label: string
 };
 
@@ -14,24 +13,35 @@ type SelectFieldProps = FieldWrapperPassThroughProps & {
   className?: string;
   registration: Partial<UseFormRegisterReturn>;
   defaultValues: Option[] | null;
+  control: any;
+  fieldName: string;
+  placeholder: string;
 };
 
-export const MultiselectField= ({label, multiOptions, defaultValues, error, className, registration}: SelectFieldProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<MultiValue<Option> | null>(defaultValues);
-
+export const MultiselectField= ({label, control, fieldName, placeholder, multiOptions, defaultValues, error, className, registration}: SelectFieldProps) => {
   return (
-    <FieldWrapper label={label} error={error}>
-      <Select
-        defaultValue={selectedOptions}
-        options={multiOptions}
-        isMulti
-        {...registration}
-        className="basic-multi-select multi-select"
-        classNamePrefix="select"
-        isSearchable = {true}
-        placeholder="Select platforms"
-        onChange={setSelectedOptions}
-        />
-    </FieldWrapper>
+    <Controller
+      control={control}
+      name={fieldName}
+      rules={{required: true}}
+      render={({field: {onChange, value, name, ref}}) => (
+        <FieldWrapper label={label} error={error}>
+          <Select
+            defaultValue={defaultValues}
+            name={name}
+            options={multiOptions}
+            isMulti={true}
+            {...registration}
+            ref = {ref}
+            className="basic-multi-select multi-select"
+            classNamePrefix="select"
+            isSearchable = {true}
+            placeholder={placeholder}
+            value={multiOptions.find((c) => c.value === value)}
+            onChange={e => onChange(e.map((c: any) => c.value))}
+            />
+        </FieldWrapper>
+      )}
+    />
   );
 };

@@ -12,7 +12,7 @@ import useUpdateVideo, { UpdateVideoDTO } from "../hooks/useUpdateVideo";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
-  description: z.string().min(1, {message: 'Name must be at least 1 character'}),
+  description: z.string().min(1, {message: 'Description must be at least 1 character'}),
   parentPlatforms: z.array(z.object({
                               id: z.number(),
                               name: z.string().min(1, {message: "required"}),
@@ -45,7 +45,7 @@ const schema = z.object({
           }
         }}
       >
-        {({ register, formState: {errors, isValid}}) => (
+        {({ register, control, formState: {errors, isValid}}) => (
           <>
             <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
               <GridItem>
@@ -58,15 +58,18 @@ const schema = z.object({
                   label="Platforms"
                   error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
                   registration={register('parentPlatforms')}
-                  defaultValues={video.parentPlatforms.map(platform => ({
-                    value: platform.id,
-                    label: platform.name,
-                  }))}
                   multiOptions={platforms.results.map((platform) => ({
-                    value: platform.id,
-                    label: platform.name,
+                        value: platform,
+                        label: platform.name
+                      }))}
+                  control = {control}
+                  fieldName = "parentPlatforms"
+                  placeholder="Select platforms"
+                  defaultValues={video.parentPlatforms.map(platform => ({
+                    value: platform,
+                    label: platform.name
                   }))}
-                  />
+                  />            
                 <TextAreaField
                   label="Description"
                   error={errors['description']}
