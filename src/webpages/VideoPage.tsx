@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import useUpdateVideo, { UpdateVideoDTO } from "../hooks/useUpdateVideo";
 import SingleSelectField from "../FormElements/SingleSelectField";
 import useGenres from "../hooks/useGenres";
+import DatepickerField from "../FormElements/Datepicker";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
@@ -46,7 +47,8 @@ const schema = z.object({
           defaultValues: {
             name: video.name,
             slug: video.slug,
-            description: video.description
+            description: video.description,
+            releasedDatetime: video.releasedDatetime
           }
         }}
       >
@@ -92,7 +94,15 @@ const schema = z.object({
                     value: platform,
                     label: platform.name
                   }))}
-                  />            
+                  />  
+                <DatepickerField
+                  label="Released Date:"
+                  error={errors['releasedDatetime']}
+                  registration={register('releasedDatetime')}
+                  control = {control}
+                  fieldName = "releasedDatetime"
+                  placeholder="Select released date"
+                />           
                 <TextAreaField
                   label="Description"
                   error={errors['description']}

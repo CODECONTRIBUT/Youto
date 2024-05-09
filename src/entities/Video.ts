@@ -1,7 +1,6 @@
 import { Platform } from "./Platform";
 import { Screenshot } from "./Screenshot";
 
-
 export interface Video {
     id: number;
     name: string;
@@ -13,4 +12,5 @@ export interface Video {
     description: string;
     screenshots: Screenshot[];
     genreId: number;
+    releasedDatetime: Date;
 }
