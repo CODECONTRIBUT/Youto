@@ -8,23 +8,22 @@ import "../css/fieldwrapper.css"
 
 type DatepickerFieldProps = FieldWrapperPassThroughProps & {
     className?: string;
-    registration: Partial<UseFormRegisterReturn>;
     control: any;
     fieldName: string;
     placeholder: string;
   };
 
-const DatepickerField = ({label, control, fieldName, placeholder, error, className, registration}: DatepickerFieldProps) => {
+const DatepickerField = ({label, control, fieldName, placeholder, error, className}: DatepickerFieldProps) => {
   return (
     <Controller
         control={control}
         name={fieldName}
-        rules={{required: false}}
         render={({field: {onChange, value, name, ref}}) => (
           <div className='field-wrapper'>
             {label}
             <DatePicker 
-              className="datepicker"         
+                        className="datepicker" 
+                        dateFormat="dd/MM/yyyy"        
                         showIcon
                         icon={<SlCalender />}
                         isClearable
@@ -32,13 +31,13 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
                         closeOnScroll={true}
                         placeholderText = {placeholder}
                         maxDate={new Date()}
-                        dropdownMode="select"
-                        name = {name}
-                        ref = {ref}
-                        {...registration}
+                        name={name}
+                        ref ={ref}
+                        dropdownMode="select"                                           
+                        //do not add {...registration} inside as it has conflicts with Controller and returns undefined value!!!!!
+                        //Just for React Datepicker. For React Select, extra register is all good.
                         selected={value}
                         onChange={onChange}
-                        value={value}
               />
         </div>
         )}

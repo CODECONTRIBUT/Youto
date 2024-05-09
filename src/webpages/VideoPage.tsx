@@ -98,7 +98,6 @@ const schema = z.object({
                 <DatepickerField
                   label="Released Date:"
                   error={errors['releasedDatetime']}
-                  registration={register('releasedDatetime')}
                   control = {control}
                   fieldName = "releasedDatetime"
                   placeholder="Select released date"
