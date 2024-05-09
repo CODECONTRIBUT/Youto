@@ -9,6 +9,8 @@ import { z } from "zod";
 import useVideo from "../hooks/useVideo";
 import { useParams } from "react-router-dom";
 import useUpdateVideo, { UpdateVideoDTO } from "../hooks/useUpdateVideo";
+import SingleSelectField from "../FormElements/SingleSelectField";
+import useGenres from "../hooks/useGenres";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
@@ -26,21 +28,24 @@ const schema = z.object({
     const videoId= parseInt(id!);
     const {data: video, error, isLoading} = useVideo(videoId);
     const {data: platforms, error: platformError, isLoading: isLoadingPlatforms} = usePlatforms();
+    const {data: genres, error: genereError, isLoading: isLoadingGenres} = useGenres();
 
     const updateVideoMutation = useUpdateVideo();
 
-    if (isLoading|| isLoadingPlatforms) return <Spinner />;
-    if (error || platformError || !video || !platforms) throw error;
+    if (isLoading|| isLoadingPlatforms || isLoadingGenres) return <Spinner />;
+    if (error || platformError || genereError || !video || !platforms || !genres) throw error;
 
     return (
       <Form<UpdateVideoDTO['data'], typeof schema>  
         onSubmit={async (values) => {
-          await updateVideoMutation.mutateAsync({ videoId, data: values });
+          console.log(values);
+          //await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
         id="videoform"
         options={{
           defaultValues: {
             name: video.name,
+            slug: video.slug,
             description: video.description
           }
         }}
@@ -54,6 +59,24 @@ const schema = z.object({
                   error={errors['name']}
                   registration={register('name')}
                 />
+                <InputField
+                  label="Slug"
+                  error={errors['slug']}
+                  registration={register('slug')}
+                />
+                <SingleSelectField
+                  label="Genre"
+                  error={errors['genreId']}
+                  registration={register('genreId')}
+                  selectOptions={genres.results.map((genre) => ({
+                        value: genre.id,
+                        label: genre.name
+                      }))}
+                  control = {control}
+                  fieldName = "genreId"
+                  placeholder="Select a Genre"
+                  defaultValue={{value: video.id, label: genres.results.find(g => g.id=== video.genreId)?.name}}
+                /> 
                 <MultiselectField
                   label="Platforms"
                   error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}

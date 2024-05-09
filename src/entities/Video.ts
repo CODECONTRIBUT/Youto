@@ -12,4 +12,5 @@ export interface Video {
     rating_Top: number;
     description: string;
     screenshots: Screenshot[];
+    genreId: number;
 }

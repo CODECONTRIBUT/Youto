@@ -1,3 +1,8 @@
 .multi-select {
-    color: var(--body-color);
+    color: var(--body-color) !important;
+}
+
+.single-select {
+    color: var(--body-color) !important;
+    width: 40%;
 }
