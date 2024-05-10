@@ -12,6 +12,7 @@ import useUpdateVideo, { UpdateVideoDTO } from "../hooks/useUpdateVideo";
 import SingleSelectField from "../FormElements/SingleSelectField";
 import useGenres from "../hooks/useGenres";
 import DatepickerField from "../FormElements/Datepicker";
+import LikeButtonField from "../FormElements/LikeButton";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
@@ -95,13 +96,25 @@ const schema = z.object({
                     label: platform.name
                   }))}
                   />  
-                <DatepickerField
-                  label="Released Date:"
-                  error={errors['releasedDatetime']}
-                  control = {control}
-                  fieldName = "releasedDatetime"
-                  placeholder="Select released date"
-                />           
+                <SimpleGrid columns={2} spacing={10}> 
+                  <GridItem>
+                  <DatepickerField
+                    label="Released Date:"
+                    error={errors['releasedDatetime']}
+                    control = {control}
+                    fieldName = "releasedDatetime"
+                    placeholder="Select released date"
+                  />           
+                  </GridItem>
+                  <GridItem>
+                    <LikeButtonField
+                      label="MetaCritic:"
+                      error={errors['metaCritic']}
+                      registration={register('metaCritic')}
+                      defaultValue={video.metaCritic}
+                    />
+                  </GridItem>
+                </SimpleGrid>
                 <TextAreaField
                   label="Description"
                   error={errors['description']}

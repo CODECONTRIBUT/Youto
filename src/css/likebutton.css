@@ -1,0 +1,45 @@
+.likebutton-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.like-button {
+    border-radius: 5;
+    overflow: hidden;
+    transition: transform .15s ease-in;
+    margin:15px;
+}
+
+.like-button:hover {
+    transform: scale(1.4);
+}
+
+.liked {
+    color: var(--like-color);   
+}
+
+.likebutton-input {
+    font-size: 14;
+    border: none !important; 
+    appearance: none;
+    outline: none;
+    background-color: var(--body-color);
+    padding: 8px;
+    width: 10% !important;
+    border-radius: 50px;
+}
+
+.high-score {
+    color: var(--like-color);
+}
+
+.median-score {
+    color: yellow;
+}
+
+.low-score {
+    color: grey;
+}
+
