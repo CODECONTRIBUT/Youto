@@ -19,10 +19,10 @@ const LikeButtonField = ({label, registration, defaultValue, error }: LikeButton
     <FieldWrapper label={label} error={error}>
       <div className='likebutton-container'>
                 {liked ? <ImHeart className={'like-button liked'}
-                            onClick={() => {setLikes(likes - 1);
+                            onClick={() => {defaultValue < 100 && setLikes(likes - 1);
                                             setLiked(!liked);}}                        
                             /> : <SlHeart className={'like-button'}
-                            onClick={() => {setLikes(likes + 1);
+                            onClick={() => {defaultValue < 100 && setLikes(likes + 1);
                                             setLiked(!liked);}}                        
                                 />
                 }
