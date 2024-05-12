@@ -42,7 +42,7 @@ const schema = z.object({
       <Form<UpdateVideoDTO['data'], typeof schema>  
         onSubmit={async (values) => {
           console.log(values);
-          //await updateVideoMutation.mutateAsync({ videoId, data: values });
+          await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
         id="videoform"
         options={{

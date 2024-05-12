@@ -14,9 +14,11 @@ const useUpdateVideo = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationFn: ({videoId, data}: UpdateVideoDTO) => apiClient.update(videoId, data),
+    //onMutate:
     onSuccess: (saveddata: Video) => {
         navigate(`/products/${saveddata.id}`);
     }  
+    //onError:
 });
 };
 
