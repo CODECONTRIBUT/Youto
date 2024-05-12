@@ -12,7 +12,7 @@ const BadgeField = ({label, error, registration}: BadgeFieldProps) => {
   return (
     <FieldWrapper label={label} error={error}>
         <input 
-            disabled
+            readOnly
             className='badge'               
             {...registration}                    
         /> 

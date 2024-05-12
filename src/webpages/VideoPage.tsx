@@ -109,29 +109,28 @@ const schema = z.object({
                   />           
                   </GridItem>
                   <GridItem>
-                    <LikeButtonField
-                      label="MetaCritic:"
-                      error={errors['metaCritic']}
-                      registration={register('metaCritic', {
-                        onChange(event) {
-                          console.log(('metaCritic'));
-                          setValue('rating_Top', getValues('metaCritic') > 95 ? 5 : 
-                                                getValues('metaCritic') > 80 ? 4 : 
-                                                getValues('metaCritic') > 60 ? 3: 2, {
-                            shouldValidate: true,
-                            shouldDirty: true
-                          });}}
-                      )}
-                      defaultValue={video.metaCritic}
-                    />
-                    </GridItem>
-                    <GridItem>
+                      <LikeButtonField
+                        label="MetaCritic:"
+                        error={errors['metaCritic']}
+                        onChangeLikes={(likes) => {
+                          setValue('rating_Top', likes > 90 ? 5 : 
+                                                  likes > 80 ? 4 : 
+                                                  likes> 60 ? 3: 2, {
+                          shouldValidate: true,
+                          shouldDirty: true
+                        });
+                        }}
+                        registration={register('metaCritic')}
+                        defaultValue={video.metaCritic}
+                      />
+                  </GridItem>
+                  <GridItem>
                     <BadgeField
                         label="Rate:"
                         error={errors['rating_Top']}
                         registration={register('rating_Top')}
-                      />
-                    </GridItem>
+                     />
+                  </GridItem>
                 </SimpleGrid>
                 <TextAreaField
                   label="Description"

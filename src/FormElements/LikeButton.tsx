@@ -9,9 +9,10 @@ type LikeButtonFieldProps = FieldWrapperPassThroughProps &  {
     registration: Partial<UseFormRegisterReturn>;
     defaultValue: number;
     label: string;
+    onChangeLikes: (likes: number) => void;
   };
 
-const LikeButtonField = ({label, registration, defaultValue, error }: LikeButtonFieldProps) => {
+const LikeButtonField = ({label, onChangeLikes, registration, defaultValue, error }: LikeButtonFieldProps) => {
     const [likes, setLikes] = useState(defaultValue);
     const [liked, setLiked] = useState(false);
     
@@ -20,15 +21,19 @@ const LikeButtonField = ({label, registration, defaultValue, error }: LikeButton
       <div className='likebutton-container'>
                 {liked ? <ImHeart className={'like-button liked'}
                             onClick={() => {defaultValue < 100 && setLikes(likes - 1);
-                                            setLiked(!liked);}}                        
+                                            setLiked(!liked);                                           
+                                            onChangeLikes(likes - 1);
+                                            }}                        
                             /> : <SlHeart className={'like-button'}
                             onClick={() => {defaultValue < 100 && setLikes(likes + 1);
-                                            setLiked(!liked);}}                        
+                                            setLiked(!liked);
+                                            onChangeLikes(likes + 1);
+                                          }}                        
                                 />
                 }
                 <input 
                     className={`likebutton-input ${likes > 90 ? 'high-score' : likes > 80 ? 'median-score' : ''}`} 
-                    value={likes}                  
+                    value={likes}                                     
                     {...registration} 
                     />               
       </div>
