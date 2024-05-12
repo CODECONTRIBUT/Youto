@@ -13,6 +13,7 @@ import SingleSelectField from "../FormElements/SingleSelectField";
 import useGenres from "../hooks/useGenres";
 import DatepickerField from "../FormElements/Datepicker";
 import LikeButtonField from "../FormElements/LikeButton";
+import BadgeField from "../FormElements/BadgeField";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
@@ -49,11 +50,12 @@ const schema = z.object({
             name: video.name,
             slug: video.slug,
             description: video.description,
-            releasedDatetime: video.releasedDatetime
+            releasedDatetime: video.releasedDatetime,
+            rating_Top: video.rating_Top
           }
         }}
       >
-        {({ register, control, formState: {errors, isValid}}) => (
+        {({ register, control, getValues, setValue, formState: {errors, isValid}}) => (
           <>
             <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
               <GridItem>
@@ -96,7 +98,7 @@ const schema = z.object({
                     label: platform.name
                   }))}
                   />  
-                <SimpleGrid columns={2} spacing={10}> 
+                <SimpleGrid columns={3} spacing={3}> 
                   <GridItem>
                   <DatepickerField
                     label="Released Date:"
@@ -110,10 +112,26 @@ const schema = z.object({
                     <LikeButtonField
                       label="MetaCritic:"
                       error={errors['metaCritic']}
-                      registration={register('metaCritic')}
+                      registration={register('metaCritic', {
+                        onChange(event) {
+                          console.log(('metaCritic'));
+                          setValue('rating_Top', getValues('metaCritic') > 95 ? 5 : 
+                                                getValues('metaCritic') > 80 ? 4 : 
+                                                getValues('metaCritic') > 60 ? 3: 2, {
+                            shouldValidate: true,
+                            shouldDirty: true
+                          });}}
+                      )}
                       defaultValue={video.metaCritic}
                     />
-                  </GridItem>
+                    </GridItem>
+                    <GridItem>
+                    <BadgeField
+                        label="Rate:"
+                        error={errors['rating_Top']}
+                        registration={register('rating_Top')}
+                      />
+                    </GridItem>
                 </SimpleGrid>
                 <TextAreaField
                   label="Description"

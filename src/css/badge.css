@@ -1,0 +1,12 @@
+.badge {
+    font-size: 14;
+    font-weight: bold;
+    border: none !important; 
+    appearance: none;
+    outline: none;
+    background-color: var(--body-color);
+    padding: 8px;
+    width: 15% !important;
+    border-radius: 50px;
+    color: green;
+}
