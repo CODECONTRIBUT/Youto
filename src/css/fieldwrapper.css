@@ -2,3 +2,9 @@
     margin-bottom: 30px;
     padding-bottom: 5px;
 }
+
+.alert {
+    color: rgb(255, 0, 60);
+    font-size: 14px;
+    font-style: italic;
+}

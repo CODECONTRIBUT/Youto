@@ -18,6 +18,7 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
     <Controller
         control={control}
         name={fieldName}
+        rules={{ required: true }}
         render={({field: {onChange, value, name, ref}}) => (
           <div className='field-wrapper'>
             {label}
@@ -39,6 +40,11 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
                         selected={value}
                         onChange={onChange}
               />
+              {error?.message && (
+                <div role="alert" aria-label={error.message} className='alert'>
+                  {error.message}
+                </div>
+              )}
         </div>
         )}
     />

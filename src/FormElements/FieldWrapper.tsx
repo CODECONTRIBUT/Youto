@@ -21,7 +21,7 @@ export const FieldWrapper = ({label, className, error, children}: FieldWrapperPr
         <div className="mt-1">{children}</div>
       </label>
       {error?.message && (
-        <div role="alert" aria-label={error.message} className="text-sm font-semibold text-red-500">
+        <div role="alert" aria-label={error.message} className='alert'>
           {error.message}
         </div>
       )}

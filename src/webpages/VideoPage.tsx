@@ -17,13 +17,22 @@ import BadgeField from "../FormElements/BadgeField";
 
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
-  description: z.string().min(1, {message: 'Description must be at least 1 character'}),
+  slug: z.string().min(1, {message: 'Slug must be at least 1 character'}),
+  genreId:  z.number({
+    required_error: "Please choose a genre",
+    invalid_type_error: "genreId must be a number",
+  }),
+
   parentPlatforms: z.array(z.object({
-                              id: z.number(),
+                              id: z.number({invalid_type_error: "Please choose a platform"}),
                               name: z.string().min(1, {message: "required"}),
                               slug: z.string().min(1, {message: 'required'})
                             }))
-                      .nonempty({message: 'please choose at least one platform'})
+                      .nonempty({message: 'please choose at least one platform'}),
+  releasedDatetime: z.date({
+    required_error: "Please select released date",
+    invalid_type_error: "Please select released date"
+  })
 });
   
   const VideoForm = () => {
@@ -41,7 +50,8 @@ const schema = z.object({
     return (
       <Form<UpdateVideoDTO['data'], typeof schema>  
         onSubmit={async (values) => {
-          await updateVideoMutation.mutateAsync({ videoId, data: values });
+          console.log(values);
+          //await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
         id="videoform"
         options={{
@@ -50,9 +60,10 @@ const schema = z.object({
             slug: video.slug,
             description: video.description,
             releasedDatetime: video.releasedDatetime,
-            rating_Top: video.rating_Top
+            rating_Top: video.rating_Top,
           }
         }}
+        schema={schema}
       >
         {({ register, control, setValue, formState: {errors, isValid}}) => (
           <>
@@ -99,13 +110,13 @@ const schema = z.object({
                   />  
                 <SimpleGrid columns={3} spacing={3}> 
                   <GridItem>
-                  <DatepickerField
-                    label="Released Date:"
-                    error={errors['releasedDatetime']}
-                    control = {control}
-                    fieldName = "releasedDatetime"
-                    placeholder="Select released date"
-                  />           
+                    <DatepickerField
+                      label="Released Date:"
+                      error={errors['releasedDatetime']}
+                      control = {control}
+                      fieldName = "releasedDatetime"
+                      placeholder="Select released date"
+                    />           
                   </GridItem>
                   <GridItem>
                       <LikeButtonField
@@ -137,7 +148,7 @@ const schema = z.object({
                   registration={register('description')}
                 />
                 <div>
-                    <Button width='30%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} 
+                    <Button width='30%' leftIcon={<BiChevronUpCircle />} 
                     isLoading = {updateVideoMutation.isLoading}
                     colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' 
                     variant='solid'>Submit</Button>
