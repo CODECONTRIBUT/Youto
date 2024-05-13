@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import APIClient from "../services/api-client";
 import { Video } from "../entities/Video";
 import { queryClient } from "../services/queryClient";
+import Swal from "sweetalert2";
 
 export type UpdateVideoDTO = {
     videoId: number;
@@ -34,13 +35,23 @@ const useUpdateVideo = () => {
           context.previousVideo,
         );
       }
+      Swal.fire({
+        text: "Updated failed",
+        icon: "error",
+        customClass: 'swal-wide'
+      });
     },
     onSuccess: (saveddata: Video) => {
         queryClient.refetchQueries({
           queryKey: ['games', saveddata.id],
           type: 'active',
           exact: true,
-        })
+        });
+        Swal.fire({
+          text: "Updated successfully",
+          icon: "success",
+          customClass: 'swal-wide'
+        });
     }  
 });
 };
