@@ -1,7 +1,7 @@
-import { useMutation, MutateOptions } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import APIClient from "../services/api-client";
 import { Video } from "../entities/Video";
-import { useNavigate } from "react-router-dom";
+import { queryClient } from "../services/queryClient";
 
 export type UpdateVideoDTO = {
     videoId: number;
@@ -11,14 +11,37 @@ export type UpdateVideoDTO = {
   const apiClient = new APIClient<Video>('/products');
 
 const useUpdateVideo = () => {
-  const navigate = useNavigate();
+
   return useMutation({
     mutationFn: ({videoId, data}: UpdateVideoDTO) => apiClient.update(videoId, data),
-    //onMutate:
+    //Optimistic update, update cache
+    onMutate: async ({videoId, data}: UpdateVideoDTO) => {
+      await queryClient.cancelQueries(['games', videoId]);
+      const previousVideo = queryClient.getQueryData<Video>(['games', videoId]);
+
+      queryClient.setQueryData(['games', videoId], {
+        ...previousVideo,
+        ...data,
+        id: videoId,
+      });
+
+      return { previousVideo };
+    },
+    onError: (error: Error, __, context: any) => {
+      if (context?.previousVideo) {
+        queryClient.setQueryData(
+          ['games', context.previousVideo.id],
+          context.previousVideo,
+        );
+      }
+    },
     onSuccess: (saveddata: Video) => {
-        navigate(`/products/${saveddata.id}`);
+        queryClient.refetchQueries({
+          queryKey: ['games', saveddata.id],
+          type: 'active',
+          exact: true,
+        })
     }  
-    //onError:
 });
 };
 

@@ -41,7 +41,6 @@ const schema = z.object({
     return (
       <Form<UpdateVideoDTO['data'], typeof schema>  
         onSubmit={async (values) => {
-          console.log(values);
           await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
         id="videoform"
@@ -55,7 +54,7 @@ const schema = z.object({
           }
         }}
       >
-        {({ register, control, getValues, setValue, formState: {errors, isValid}}) => (
+        {({ register, control, setValue, formState: {errors, isValid}}) => (
           <>
             <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
               <GridItem>
@@ -139,6 +138,7 @@ const schema = z.object({
                 />
                 <div>
                     <Button width='30%' isDisabled={!isValid} leftIcon={<BiChevronUpCircle />} 
+                    isLoading = {updateVideoMutation.isLoading}
                     colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' 
                     variant='solid'>Submit</Button>
                 </div>
