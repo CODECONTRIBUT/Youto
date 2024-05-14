@@ -18,21 +18,29 @@ import BadgeField from "../FormElements/BadgeField";
 const schema = z.object({
   name: z.string().min(1, {message: 'Name must be at least 1 character'}),
   slug: z.string().min(1, {message: 'Slug must be at least 1 character'}),
-  genreId:  z.number({
-    required_error: "Please choose a genre",
+  genreId: z.number({
+    required_error: "genre is required",
     invalid_type_error: "genreId must be a number",
   }),
-
   parentPlatforms: z.array(z.object({
                               id: z.number({invalid_type_error: "Please choose a platform"}),
-                              name: z.string().min(1, {message: "required"}),
-                              slug: z.string().min(1, {message: 'required'})
+                              name: z.string(),
+                              slug: z.string()
                             }))
                       .nonempty({message: 'please choose at least one platform'}),
-  releasedDatetime: z.date({
+  metaCritics: z.union([z.string({
+    required_error: "MetaCritics is required",
+    invalid_type_error: "MetaCritics required",
+  }), z.number()]),
+  rating_Top: z.number({
+    required_error: "Rating is required",
+    invalid_type_error: "Rating must be a number",
+  }),
+  releasedDatetime: z.union([z.date({
     required_error: "Please select released date",
-    invalid_type_error: "Please select released date"
-  })
+    invalid_type_error: "Please select a date",
+  }), z.string().datetime({message: 'not a date'})]),
+  description: z.string().optional()
 });
   
   const VideoForm = () => {
@@ -49,7 +57,7 @@ const schema = z.object({
 
     return (
       <Form<UpdateVideoDTO['data'], typeof schema>  
-        onSubmit={async (values) => {
+        onSubmit={ (values) => {
           console.log(values);
           //await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
@@ -58,9 +66,12 @@ const schema = z.object({
           defaultValues: {
             name: video.name,
             slug: video.slug,
+            genreId: video.genreId,
+            parentPlatforms: video.parentPlatforms,
             description: video.description,
             releasedDatetime: video.releasedDatetime,
             rating_Top: video.rating_Top,
+            metaCritic: video.metaCritic
           }
         }}
         schema={schema}
@@ -149,7 +160,7 @@ const schema = z.object({
                 />
                 <div>
                     <Button width='30%' leftIcon={<BiChevronUpCircle />} 
-                    isLoading = {updateVideoMutation.isLoading}
+              
                     colorScheme='teal' fontWeight='bold' marginLeft={1} marginTop='25px' type='submit' 
                     variant='solid'>Submit</Button>
                 </div>

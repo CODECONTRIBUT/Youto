@@ -15,8 +15,8 @@ type FormProps<TFormValues extends FieldValues, Schema> = {
 
 //ZodType<output, ZodTypeDef, input>
 export const Form = <
-  TFormValues extends FieldValues = FieldValues,
-  Schema extends ZodType<unknown, ZodTypeDef, unknown> = ZodType<unknown, ZodTypeDef, unknown>>
+  TFormValues extends FieldValues = Record<string, any>,
+  Schema extends ZodType<FieldValues> = ZodType<FieldValues>>
   ({ onSubmit, children, className, options, id, schema }: FormProps<TFormValues, Schema>) => {
   const methods = useForm<TFormValues>({ ...options, resolver: schema && zodResolver(schema) });
   return (

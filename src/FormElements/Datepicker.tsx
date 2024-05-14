@@ -18,7 +18,6 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
     <Controller
         control={control}
         name={fieldName}
-        rules={{ required: true }}
         render={({field: {onChange, value, name, ref}}) => (
           <div className='field-wrapper'>
             {label}
@@ -33,7 +32,11 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
                         placeholderText = {placeholder}
                         maxDate={new Date()}
                         name={name}
-                        ref ={ref}
+                        ref = {(r) => {
+                          ref({
+                            focus: r?.setFocus
+                          });
+                        }}
                         dropdownMode="select"                                           
                         //do not add {...registration} inside as it has conflicts with Controller and returns undefined value!!!!!
                         //Just for React Datepicker. For React Select, extra register is all good.
