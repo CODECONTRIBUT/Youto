@@ -5,6 +5,7 @@ import ExpandableText from "../components/ExpandableText";
 import VideoAttributes from "../components/VideoAttributes";
 import VideoTrailer from "../components/VideoTrailer";
 import VideoScreenshots from "../components/VideoScreenshots";
+import VideoPage from "./VideoPage";
 
 
 const VideoDetailPage = () => {
@@ -17,9 +18,7 @@ const VideoDetailPage = () => {
     return (
         <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
             <GridItem>
-                <Heading>{data.name}</Heading>
-                <ExpandableText>{data.description}</ExpandableText>
-                <VideoAttributes video={data}/>               
+                <VideoPage />             
             </GridItem>
             <GridItem>
                 <VideoTrailer videoId={data.id} />

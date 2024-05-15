@@ -18,12 +18,12 @@ type SelectFieldProps = FieldWrapperPassThroughProps & {
   placeholder: string;
 };
 
-const SingleSelectField = ({label, control, fieldName, placeholder, selectOptions, defaultValue, error, className, registration}: SelectFieldProps) => {
+const SingleSelectField = ({label, control, fieldName, placeholder, selectOptions, defaultValue, className, registration}: SelectFieldProps) => {
   return (
     <Controller
     control={control}
     name={fieldName}
-    render={({field: {onChange, value, name, ref}}) => (
+    render={({field: {onChange, value, name, ref}, fieldState: {error}}) => (
       <FieldWrapper label={label} error={error}>
         <Select
           defaultValue={defaultValue && selectOptions.find((c) => c.value === defaultValue)}

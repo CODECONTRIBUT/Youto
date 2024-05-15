@@ -28,13 +28,10 @@ const schema = z.object({
                               slug: z.string()
                             }))
                       .nonempty({message: 'please choose at least one platform'}),
-  metaCritics: z.union([z.string({
-    required_error: "MetaCritics is required",
-    invalid_type_error: "MetaCritics required",
-  }), z.number()]),
+  metaCritic: z.union([z.string(), z.number()]),
   rating_Top: z.number({
-    required_error: "Rating is required",
-    invalid_type_error: "Rating must be a number",
+        required_error: "Rating is required",
+        invalid_type_error: "Rating must be a number",
   }),
   releasedDatetime: z.date({
     required_error: "Please select released date",
@@ -57,9 +54,8 @@ const schema = z.object({
 
     return (
       <Form<UpdateVideoDTO['data'], typeof schema>  
-        onSubmit={ (values) => {
-          console.log(values);
-          //await updateVideoMutation.mutateAsync({ videoId, data: values });
+        onSubmit={ async (values) => {
+          await updateVideoMutation.mutateAsync({ videoId, data: values });
         }}
         id="videoform"
         options={{
@@ -78,7 +74,7 @@ const schema = z.object({
       >
         {({ register, control, setValue, formState: {errors, isValid}}) => (
           <>
-            <SimpleGrid columns={{base: 1, md: 2}} spacing={5}>
+            <SimpleGrid columns={{base: 1, md: 1}} spacing={50}>
               <GridItem>
                 <InputField
                   label="Name"
@@ -92,7 +88,7 @@ const schema = z.object({
                 />
                 <SingleSelectField
                   label="Genre"
-                  error={errors['genreId']}
+ 
                   registration={register('genreId')}
                   selectOptions={genres.results.map((genre) => ({
                         value: genre.id,
@@ -117,16 +113,14 @@ const schema = z.object({
                     label: platform.name
                   }))}
                   />  
-                <SimpleGrid columns={3} spacing={3}> 
-                  <GridItem>
                     <DatepickerField
                       label="Released Date:"
-                      error={errors['releasedDatetime']}
+                      error={errors['releasedDatetime']}               
                       control = {control}
                       fieldName = "releasedDatetime"
                       placeholder="Select released date"
                     />           
-                  </GridItem>
+                <SimpleGrid columns={{base: 1, md: 2}}> 
                   <GridItem>
                       <LikeButtonField
                         label="MetaCritic:"

@@ -16,6 +16,7 @@ const BadgeField = ({label, error, registration}: BadgeFieldProps) => {
             className='badge'               
             {...registration}                    
         /> 
+        <label style={{fontSize: 12, color:'green', fontStyle: 'italic'}}> changed by likes</label>
     </FieldWrapper>
   )
 }
