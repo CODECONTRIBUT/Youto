@@ -11,14 +11,13 @@ type Option = {
 type SelectFieldProps = FieldWrapperPassThroughProps & {
   multiOptions: Option[];
   className?: string;
-  registration: Partial<UseFormRegisterReturn>;
-  defaultValues: Option[] | null;
+  defaultValues: Option[] | undefined;
   control: any;
   fieldName: string;
   placeholder: string;
 };
 
-export const MultiselectField= ({label, control, fieldName, placeholder, multiOptions, defaultValues, error, className, registration}: SelectFieldProps) => {
+export const MultiselectField= ({label, control, fieldName, placeholder, multiOptions, error, defaultValues, className}: SelectFieldProps) => {
   return (
     <Controller
       control={control}
@@ -26,12 +25,11 @@ export const MultiselectField= ({label, control, fieldName, placeholder, multiOp
       rules={{required: true}}
       render={({field: {onChange, value, name, ref}}) => (
         <FieldWrapper label={label} error={error}>
-          <Select
-            defaultValue={defaultValues}
+          <Select              
+            defaultValue={defaultValues && multiOptions.filter((e) => defaultValues.find(o => o.label === e.label))}  
             name={name}
             options={multiOptions}
-            isMulti={true}
-            {...registration}
+            isMulti
             ref = {ref}
             className="basic-multi-select multi-select"
             classNamePrefix="select"

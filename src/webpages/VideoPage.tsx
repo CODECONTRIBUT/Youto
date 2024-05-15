@@ -36,10 +36,10 @@ const schema = z.object({
     required_error: "Rating is required",
     invalid_type_error: "Rating must be a number",
   }),
-  releasedDatetime: z.union([z.date({
+  releasedDatetime: z.date({
     required_error: "Please select released date",
-    invalid_type_error: "Please select a date",
-  }), z.string().datetime({message: 'not a date'})]),
+    invalid_type_error: "Please select released date",
+  }),
   description: z.string().optional()
 });
   
@@ -69,7 +69,7 @@ const schema = z.object({
             genreId: video.genreId,
             parentPlatforms: video.parentPlatforms,
             description: video.description,
-            releasedDatetime: video.releasedDatetime,
+            releasedDatetime: new Date(video.releasedDatetime),
             rating_Top: video.rating_Top,
             metaCritic: video.metaCritic
           }
@@ -106,7 +106,6 @@ const schema = z.object({
                 <MultiselectField
                   label="Platforms"
                   error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
-                  registration={register('parentPlatforms')}
                   multiOptions={platforms.results.map((platform) => ({
                         value: platform,
                         label: platform.name

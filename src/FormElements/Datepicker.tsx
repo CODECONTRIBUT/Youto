@@ -1,4 +1,4 @@
-import { Controller, UseFormRegisterReturn } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { FieldWrapperPassThroughProps } from "./FieldWrapper";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,7 +23,7 @@ const DatepickerField = ({label, control, fieldName, placeholder, error, classNa
             {label}
             <DatePicker 
                         className="datepicker" 
-                        dateFormat="dd/MM/yyyy"        
+                        dateFormat="dd/MM/yyyy"     
                         showIcon
                         icon={<SlCalender />}
                         isClearable

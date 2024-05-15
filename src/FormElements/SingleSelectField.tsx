@@ -12,7 +12,7 @@ type SelectFieldProps = FieldWrapperPassThroughProps & {
   selectOptions: Option[];
   className?: string;
   registration: Partial<UseFormRegisterReturn>;
-  defaultValue: Option | null;
+  defaultValue: Option | undefined;
   control: any;
   fieldName: string;
   placeholder: string;
@@ -23,11 +23,10 @@ const SingleSelectField = ({label, control, fieldName, placeholder, selectOption
     <Controller
     control={control}
     name={fieldName}
-    rules={{required: true}}
     render={({field: {onChange, value, name, ref}}) => (
       <FieldWrapper label={label} error={error}>
         <Select
-          defaultValue={defaultValue}
+          defaultValue={defaultValue && selectOptions.find((c) => c.value === defaultValue)}
           name={name}
           options={selectOptions}
           {...registration}
