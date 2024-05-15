@@ -104,8 +104,7 @@ const schema = z.object({
                   defaultValue={{value: video.id, label: genres.results.find(g => g.id=== video.genreId)?.name}}
                 /> 
                 <MultiselectField
-                  label="Platforms"
-                  error={errors.parentPlatforms && errors.parentPlatforms[0]?.id}
+                  label="Platforms"                
                   multiOptions={platforms.results.map((platform) => ({
                         value: platform,
                         label: platform.name

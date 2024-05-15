@@ -2,6 +2,7 @@ import { Controller, UseFormRegisterReturn } from 'react-hook-form';
 import { FieldWrapper, FieldWrapperPassThroughProps } from './FieldWrapper';
 import Select from 'react-select';
 import '../css/select.css'
+import "../css/fieldwrapper.css"
 
 type Option = {
    value: any,
@@ -17,13 +18,12 @@ type SelectFieldProps = FieldWrapperPassThroughProps & {
   placeholder: string;
 };
 
-export const MultiselectField= ({label, control, fieldName, placeholder, multiOptions, error, defaultValues, className}: SelectFieldProps) => {
+export const MultiselectField= ({label, control, fieldName, placeholder, multiOptions, defaultValues}: SelectFieldProps) => {
   return (
     <Controller
       control={control}
       name={fieldName}
-      rules={{required: true}}
-      render={({field: {onChange, value, name, ref}}) => (
+      render={({field: {onChange, value, name, ref}, fieldState: {error}}) => (
         <FieldWrapper label={label} error={error}>
           <Select              
             defaultValue={defaultValues && multiOptions.filter((e) => defaultValues.find(o => o.label === e.label))}  
