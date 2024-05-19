@@ -142,6 +142,8 @@ const schema = z.object({
                         label="Rate:"
                         error={errors['rating_Top']}
                         registration={register('rating_Top')}
+                        hasTip={true} 
+                        tip='Rate 5: Likes > 90; Rate 4: Likes > 80; Rate 3: Likes > 60'
                      />
                   </GridItem>
                 </SimpleGrid>

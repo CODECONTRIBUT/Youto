@@ -1,22 +1,24 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { FieldWrapper, FieldWrapperPassThroughProps } from './FieldWrapper';
 import '../css/badge.css'
+import TooltipField from './Tooltip';
 
 type BadgeFieldProps = FieldWrapperPassThroughProps & {
 
     className?: string;
     registration: Partial<UseFormRegisterReturn>;
+    hasTip?: boolean;
+    tip?: string;
   };
 
-const BadgeField = ({label, error, registration}: BadgeFieldProps) => {
+const BadgeField = ({label, error, registration, hasTip, tip}: BadgeFieldProps) => {
   return (
-    <FieldWrapper label={label} error={error}>
+    <FieldWrapper label={label} error={error} hasTip={hasTip} tipLabel={tip}>
         <input 
             readOnly
             className='badge'               
             {...registration}                    
         /> 
-        <label style={{fontSize: 12, color:'green', fontStyle: 'italic'}}> changed by likes</label>
     </FieldWrapper>
   )
 }

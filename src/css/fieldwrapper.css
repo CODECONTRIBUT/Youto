@@ -8,3 +8,8 @@
     font-size: 14px;
     font-style: italic;
 }
+
+.label-div {
+    display: flex;
+    flex-direction: row;
+}
