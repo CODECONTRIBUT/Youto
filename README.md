@@ -5,6 +5,9 @@ Already integrated with my own WEB-API .Net core V8. End-to-end deployed on Azur
 URL: https://youto.azurewebsites.net/
 
 
-Next phrases: 1. add React mutations to implement create/update/delete on front-end. (Endpoints for these operations on API had already been completed and tested)
-              2. develop React Native app and integrate with web-api. Add more categries: food, clothes, stationary, etc..
+All form elements are generic: Input, React single select, React multi select, React Datepicker, like button, badge, textarea and form itself.
+validation tool is Zod. 
+
+Next Phrases: add more generic form elements, like update file components, hint icon popup, etc.. To enlarge own element library.
+
 
