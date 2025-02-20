@@ -16,6 +16,7 @@ const MenuLayout = () => {
           <MenuDefinitionItem menuTerm='Home' linkStr='/' />
           <MenuDefinitionItem menuTerm='Genres' linkStr='/genres' />               
           <MenuDefinitionItem menuTerm='Stores' linkStr='/stores' />
+          <MenuDefinitionItem menuTerm='Supplier' linkStr='/supplier' />
           <MenuDefinitionItem menuTerm='Contact Us' linkStr='/constactus' />
         </ul>
       </div>
@@ -24,6 +25,7 @@ const MenuLayout = () => {
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Home' linkStr='/' />
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Genres' linkStr='/genres' />               
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Stores' linkStr='/stores' />
+          <MenuDefinitionItem clasStr='hided_item' menuTerm='Supplier' linkStr='/supplier' />
           <MenuDefinitionItem clasStr='hided_item' menuTerm='Contact Us' linkStr='/constactus' />
           <li className='show_sidebar' onClick={() => setActive(true)}><a href="#"><TfiAlignJustify  /></a></li>
         </ul>

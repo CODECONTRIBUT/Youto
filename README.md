@@ -11,8 +11,8 @@ Next Phrases: add more generic form elements, like update file components, hint 
 Changes: wrap Material UI components to customize this website's UI elements.
 
 Start to user Material UI (free version) to develop Supplier management part. -- 20/02/2025
-a. Home page of Supplier Management part, mostly diagrams, grids, pies.
+a. Home page of Supplier Management part, mostly diagrams, grids, pie charts.
 
-b. single supplier profile page, populor porperties and file download, etc..
+b. single supplier profile page, popular properties and file download, etc..
 
 c. continue.......

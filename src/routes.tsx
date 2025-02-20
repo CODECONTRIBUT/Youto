@@ -8,6 +8,7 @@ import GenresPage from "./webpages/GenresPage";
 import GenreDetailPage from "./webpages/GenreDetailPage";
 import StoresPage from "./webpages/StoresPage";
 import StoreDetailPage from "./webpages/StoreDetailPage";
+import SupplierPage from "./webpages/SupplierPage";
 import ContactUsPage from "./webpages/ContactUsPage";
 
 const router = createBrowserRouter([
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
             {path: 'genres/:genreId', element: <GenreDetailPage />},
             {path: 'stores', element: <StoresPage />},
             {path: 'stores/:storeId', element: <StoreDetailPage />},
+            {path: 'supplier', element: <SupplierPage />},
             {path: 'constactus', element: <ContactUsPage />}
         ]
     }
